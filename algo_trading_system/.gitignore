@@ -1,0 +1,73 @@
+# Configuration files - IMPORTANT: Contains sensitive data
+config.py
+
+# Python virtual environment
+venv/
+*.env/
+env/
+env.bak/
+venv.bak/
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Logs and data files (that shouldn't be versioned)
+logs/
+*.log
+*.csv 
+# If you have specific CSVs that *should* be versioned, 
+# you can negate them e.g. !data/my_important_data.csv
+# For now, assume all CSVs in root or logs/ are runtime generated.
+# Keep daily_summary.csv and trades.csv out of git by default.
+# If you want to track specific versions of them, comment out the line below.
+# daily_summary.csv 
+# trades.csv
+
+# IDE / Editor specific files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Test reports and coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# OS generated files
+.DS_Store
+Thumbs.db
