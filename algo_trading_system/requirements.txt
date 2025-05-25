@@ -1,0 +1,4 @@
+# Core broker library for Zerodha
+kiteconnect>=3.9.0
+
+# Other libraries will be added here as needed (e.g., pandas, numpy)

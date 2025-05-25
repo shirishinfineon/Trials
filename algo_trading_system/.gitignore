@@ -71,3 +71,12 @@ coverage.xml
 # OS generated files
 .DS_Store
 Thumbs.db
+
+# Environment variables file
+.env
+
+# Access token files (example patterns, adjust if specific path is chosen later)
+*.token
+*_token.txt
+access_token.json
+logs/*token.txt
