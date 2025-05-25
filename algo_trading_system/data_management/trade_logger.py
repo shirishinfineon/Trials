@@ -53,14 +53,16 @@ class TradeLogger:
             return False
 
     def update_trade_status(self, order_id, new_status, remarks=''):
-        # This is a simplified update. For robust updates, you might read the CSV,
-        # update in memory (e.g. using pandas), and rewrite.
-        # For now, we'll just log a new entry indicating an update.
-        print(f"Updating trade status for OrderID {order_id} to {new_status}. This is a simplified log entry.")
+        # This method logs a new entry to indicate a status update for an existing order.
+        # It does not modify the original trade log entry in the CSV file.
+        # True in-place updates in CSVs are complex and inefficient. This approach ensures
+        # an auditable trail of status changes. For analysis, one would typically process
+        # the entire log file, taking the latest status for a given order_id.
+        print(f"Logging status update for OrderID {order_id} to {new_status}.") # Changed print message for clarity
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')[:-3]
         update_data = [
             timestamp, 'SYSTEM_UPDATE', '-', '-', 'UPDATE_STATUS', 0, 0.0,
-            '-', None, None, order_id, new_status, f"Previous status update: {remarks}"
+            '-', None, None, order_id, new_status, f"Status update. Prior remarks: {remarks}" # Slightly rephrased remarks
         ]
         try:
             with open(self.trade_log_file, 'a', newline='') as f:
