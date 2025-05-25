@@ -1,0 +1,103 @@
+# algo_trading_system/config.py.example
+
+# --- General Settings ---
+# Select the active broker: "zerodha" or "upstox"
+ACTIVE_BROKER = "zerodha"
+
+# --- Zerodha API Credentials ---
+# Register for a Kite Connect developer account and get your API key and secret.
+# It's recommended to use environment variables for sensitive data in production,
+# but for simplicity in this example, we'll define them here.
+# IMPORTANT: DO NOT commit your actual API keys and secret to version control.
+# Copy this file to config.py and fill in your actual credentials.
+# config.py is already in .gitignore.
+
+ZERODHA_API_KEY = "YOUR_API_KEY_HERE"
+ZERODHA_API_SECRET = "YOUR_API_SECRET_HERE"
+
+# After the first successful login with API_KEY and API_SECRET,
+# the system will generate an access token. For subsequent logins,
+# if you manually get a request_token (e.g., after your first login flow or if token expires),
+# you can paste it here. The system will try to use this to generate a new session.
+# Otherwise, leave it blank or None, and the system will prompt you to log in via URL
+# and you'll paste the request_token into the console.
+ZERODHA_REQUEST_TOKEN = "" # Optional: Paste request_token here if needed for login
+
+# --- File Paths ---
+# These files will be created in a 'logs' directory within your project root.
+# The application will create the 'logs' directory if it doesn't exist.
+
+# File to store the Zerodha access token and other session data
+ZERODHA_ACCESS_TOKEN_FILE = "logs/zerodha_access_token.json"
+
+# File to log all trades and system actions
+TRADE_LOG_FILE = "logs/trades.csv"
+
+# File to log daily P&L summaries
+DAILY_SUMMARY_FILE = "logs/daily_summary.csv"
+
+# General application log file (can be used for more detailed debugging)
+APPLICATION_LOG_FILE = "logs/application.log"
+
+
+# --- Backtesting Configuration ---
+BACKTEST_DATA_DIR = "historical_data/" # Directory to store historical CSV data
+BACKTEST_START_DATE = "2023-01-01"
+BACKTEST_END_DATE = "2023-12-31"
+BACKTEST_INITIAL_CAPITAL = 100000  # Starting capital for backtests
+
+# --- Strategy Configuration ---
+# Example: Parameters for a Simple Moving Average (SMA) Crossover strategy
+EXAMPLE_STRATEGY_PARAMS = {
+    "short_window": 20,
+    "long_window": 50,
+    "buy_threshold_percentage": 0.01, # e.g., buy if price is 1% above long SMA
+    "sell_threshold_percentage": 0.01 # e.g., sell if price is 1% below long SMA
+}
+
+# --- Risk Management (General) ---
+# Maximum percentage of capital to risk on a single trade
+MAX_RISK_PER_TRADE_PERCENT = 1.0 # e.g., 1% of total capital
+# Default stop-loss percentage from entry price if not specified by strategy
+DEFAULT_STOPLOSS_PERCENT = 2.0 # e.g., 2% below entry for buy, 2% above for sell
+# Default target profit percentage from entry price if not specified by strategy
+DEFAULT_TARGET_PERCENT = 4.0   # e.g., 4% above entry for buy, 4% below for sell
+
+# --- Trade Execution ---
+# Default product type for orders (e.g., MIS for intraday, CNC for delivery)
+DEFAULT_PRODUCT_TYPE = "MIS"
+# Default order type (e.g., MARKET, LIMIT)
+DEFAULT_ORDER_TYPE = "MARKET"
+# Whether to allow pyramiding (adding to existing positions on new signals)
+ALLOW_PYRAMIDING = False 
+# Max number of entries for the same symbol if pyramiding is allowed (e.g., 3 entries)
+MAX_PYRAMID_ENTRIES = 1 # Default to 1 (no pyramiding) if ALLOW_PYRAMIDING is False
+
+# Max number of open positions allowed at any time (for different symbols)
+MAX_OPEN_POSITIONS = 5
+
+
+# --- Upstox API Credentials (Placeholder for future implementation) ---
+# UPSTOX_API_KEY = "YOUR_UPSTOX_API_KEY_HERE"
+# UPSTOX_API_SECRET = "YOUR_UPSTOX_API_SECRET_HERE"
+# UPSTOX_REDIRECT_URI = "YOUR_UPSTOX_REDIRECT_URI_HERE"
+# UPSTOX_ACCESS_TOKEN_FILE = "logs/upstox_access_token.json"
+
+# --- Other ---
+# For example, a global flag to enable/disable detailed debugging
+DEBUG_MODE = True
+
+
+# --- Upstox API Credentials ---
+# Register for an Upstox developer account and get your API key and secret.
+# Documentation: https://upstox.com/developer/api-documentation
+UPSTOX_API_KEY = "YOUR_UPSTOX_API_KEY_HERE"
+UPSTOX_API_SECRET = "YOUR_UPSTOX_API_SECRET_HERE"
+
+# This is the URL you configured in your Upstox developer app settings.
+# After successful login, Upstox will redirect to this URL with an auth_code.
+UPSTOX_REDIRECT_URI = "YOUR_UPSTOX_REDIRECT_URI_HERE" # e.g., "http://127.0.0.1:5000/upstox-callback"
+
+# File to store the Upstox access token and other session data (similar to Zerodha's)
+# Will be created in the 'logs' directory.
+UPSTOX_ACCESS_TOKEN_FILE = "logs/upstox_access_token.json"
